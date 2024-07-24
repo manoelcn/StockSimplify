@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    SGE - Categorias
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h3 class="display-6">Excluir Categoria</h3>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Deseja excluir a categoria <strong>{{ category.name }}</strong>?</p>
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Excluir Categoria</button>
+                </form>
+            </div>
+        </div>
+        <a href="{% url 'category-list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar</a>
+    </div>
+{% endblock %}
