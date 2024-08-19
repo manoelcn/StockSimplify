@@ -26,7 +26,7 @@ class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'brand_create.html'
     form_class = forms.BrandForm
     success_url = reverse_lazy('brand-list')
-    permission_required = 'brands.create_brand'
+    permission_required = 'brands.add_brand'
 
 
 class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
