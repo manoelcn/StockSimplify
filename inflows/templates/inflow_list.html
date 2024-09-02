@@ -15,12 +15,14 @@
             </form>
         </div>
         
-        <div class="col-md-6">
-            <a href="{% url 'inflow-create' %}" class="btn btn-primary float-end">
-                <i class="bi bi-plus"></i> 
-                Registrar Entrada
-            </a>
-        </div>
+        {% if perms.inflows.add_inflow %}
+            <div class="col-md-6">
+                <a href="{% url 'inflow-create' %}" class="btn btn-primary float-end">
+                    <i class="bi bi-plus"></i> 
+                    Registrar Entrada
+                </a>
+            </div>
+        {% endif %}
     </div>
 
     <div class="table-responsive">
@@ -44,9 +46,11 @@
                         <td>{{ inflow.quantity }}</td>
                         <td>{{ inflow.created_at }}</td>
                         <td>
-                            <a href="{% url 'inflow-detail' inflow.id %}" class="btn btn-info btn-sm">
-                                <i class="bi bi-eye"></i>
-                            </a>
+                            {% if perms.inflows.view_inflow %}
+                                <a href="{% url 'inflow-detail' inflow.id %}" class="btn btn-info btn-sm">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
