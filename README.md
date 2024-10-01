@@ -1,5 +1,5 @@
 # Descrição
-StockSimplify é um projeto fullstack desenvolvido em Python com o framework Django. Ele é um sistema de gestão de estoque projetado para facilitar o controle de inventário.
+StockSimplify é um projeto fullstack e API desenvolvido em Python com o framework Django. Ele é um sistema de gestão de estoque projetado para facilitar o controle de inventário.
 
 StockSimplify oferece um conjunto abrangente de funcionalidades, incluindo operações CRUD (Create, Read, Update, Delete) para marcas, 
 categorias, entradas e saídas de produtos, produtos e fornecedores.
