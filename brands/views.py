@@ -48,7 +48,7 @@ class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Brand
     template_name = 'brand_delete.html'
-    success_url = reverse_lazy('brand-list') 
+    success_url = reverse_lazy('brand-list')
     permission_required = 'brands.delete_brand'
 
 
