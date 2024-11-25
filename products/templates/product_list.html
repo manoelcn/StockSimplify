@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<h1>Produtos</h1>
 
     {% if perms.products.view_product and perms.inflows.view_inflow %}
         {% include 'components/_product_metrics.html' %}
