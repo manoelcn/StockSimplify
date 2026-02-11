@@ -1,46 +1,127 @@
-# Descrição
-StockSimplify é um projeto fullstack e API desenvolvido em Python com o framework Django. Ele é um sistema de gestão de estoque projetado para facilitar o controle de inventário.
+# StockSimplify 📦
 
-StockSimplify oferece um conjunto abrangente de funcionalidades, incluindo operações CRUD (Create, Read, Update, Delete) para marcas, 
-categorias, entradas e saídas de produtos, produtos e fornecedores.
+Um sistema de gerenciamento de estoque construído com Django e Django Rest Framework.
 
-Além disso, o StockSimplify conta com uma tela de dashboard para facilitar a visualização de métricas importantes, proporcionando uma visão clara e concisa do estado do estoque.
+---
 
-**Este projeto ainda está em desenvolvimento** e, portanto, receberá atualizações futuras para aprimorar e expandir suas funcionalidades.
+## 📋 Descrição do Projeto
+O StockSimplify é uma aplicação web com API REST para controle e gerenciamento de estoque.
 
-## Instalação
+O sistema permite realizar operações CRUD (Create, Read, Update, Delete) sobre:
 
-Siga os passos abaixo para clonar e executar o projeto no seu computador:
+- Produtos
+- Categorias
+- Marcas
+- Fornecedores
+- Entradas de estoque (Inflow)
+- Saídas de estoque (Outflow)
 
-1. **Clone o repositório**
-   
-   ``` git clone https://github.com/seu-usuario/StockSimplify.git ```
+Tecnologias usadas:
 
-2. **Crie um ambiente virtual**
-   
-   ``` python -m venv venv ```
+- Django
+- Django Rest Framework
+- Simple JWT
+- Chart.js
 
-3. **Ative o ambiente virtual**
-   
-   - Windows: ``` venv\Scripts\activate ```
-   - Linux/MacOs: ``` source venv/bin/activate ```
+---
 
-4. **Instale as dependências**
-   
-   ``` pip install -r requirements.txt ```
+## 📦 Estrutura do Projeto
 
-5. **Realize as migrações do banco de dados**
-    
-   ``` python manage.py migrate ```
+```
+StockSimplify/
+├── app/
+├── authentication/
+├── brands/
+├── categories/
+├── docs/
+├── inflows/
+├── outflows/
+├── products/
+├── services/
+├── suppliers/
+├── .flake8
+├── .gitignore
+├── manage.py
+├── mkdocs.yml
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+└── requirements_dev.txt
+```
 
-6. **Crie um superusuário**
-   
-   ``` python manage.py createsuperuser ```
+---
 
-7. **Inicie o servidor de desenvolvimento**
-    
-   ``` python manage.py runserver ```
+## ▶️ Como rodar o projeto
 
-8. **Acesse o projeto no seu navegador**
-    
-   Abra o navegador e digite **http://127.0.0.1:8000** para ver o projeto em execução.
+### 1. Criar e ativar o ambiente virtual
+
+```
+python3 -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate    # Windows
+```
+
+---
+
+### 2. Instalar as dependências
+
+```
+pip install -r requirements.txt
+```
+
+Caso queira instalar dependências de desenvolvimento:
+
+```
+pip install -r requirements_dev.txt
+```
+
+---
+
+### 3. Rodar as migrações do banco de dados
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+### 4. Criar um superusuário (opcional, mas recomendado)
+
+```
+task create_user
+```
+
+---
+
+### 5. Rodar o servidor Django
+
+```
+task run
+```
+
+A aplicação estará disponível em: `http://127.0.0.1:8000`
+
+---
+
+## 📚 Documentação MkDocs
+
+Para rodar a documentação local:
+
+```
+task docs
+```
+
+Acesse:
+
+```
+http://127.0.0.1:8001
+```
+
+---
+
+## 👤 Autor
+
+**Manoel Cândido**
+
+[manoelcandidodev@gmail.com](mailto:manoelcandidodev@gmail.com)
