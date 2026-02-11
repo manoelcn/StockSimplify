@@ -1,9 +1,14 @@
-from rest_framework import generics
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
+from rest_framework import generics
+
 from app import metrics
-from . import models, forms, serializers
+
+from . import forms, models, serializers
 
 
 class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -28,7 +33,9 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
 
-class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class OutflowCreateView(
+    LoginRequiredMixin, PermissionRequiredMixin, CreateView
+):
     model = models.Outflow
     template_name = 'outflow_create.html'
     form_class = forms.OutflowForm
@@ -36,7 +43,9 @@ class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     permission_required = 'outflows.add_outflow'
 
 
-class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class OutflowDetailView(
+    LoginRequiredMixin, PermissionRequiredMixin, DetailView
+):
     model = models.Outflow
     template_name = 'outflow_detail.html'
     context_object_name = 'outflow'

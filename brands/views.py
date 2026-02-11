@@ -1,8 +1,18 @@
-from rest_framework import generics
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from . import models, forms, serializers
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
+from rest_framework import generics
+
+from . import forms, models, serializers
 
 
 class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):

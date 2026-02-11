@@ -1,11 +1,22 @@
-from rest_framework import generics
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from . import models, forms, serializers
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
+from rest_framework import generics
+
 from app import metrics
-from categories.models import Category
 from brands.models import Brand
+from categories.models import Category
+
+from . import forms, models, serializers
 
 
 class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -44,7 +55,9 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
 
-class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class ProductCreateView(
+    LoginRequiredMixin, PermissionRequiredMixin, CreateView
+):
     model = models.Product
     template_name = 'product_create.html'
     form_class = forms.ProductForm
@@ -52,14 +65,18 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     permission_required = 'products.add_product'
 
 
-class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class ProductDetailView(
+    LoginRequiredMixin, PermissionRequiredMixin, DetailView
+):
     model = models.Product
     template_name = 'product_detail.html'
     context_object_name = 'product'
     permission_required = 'products.view_product'
 
 
-class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ProductUpdateView(
+    LoginRequiredMixin, PermissionRequiredMixin, UpdateView
+):
     model = models.Product
     template_name = 'product_update.html'
     form_class = forms.ProductForm
@@ -67,7 +84,9 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     permission_required = 'products.change_product'
 
 
-class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class ProductDeleteView(
+    LoginRequiredMixin, PermissionRequiredMixin, DeleteView
+):
     model = models.Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product-list')
@@ -79,6 +98,8 @@ class ProductCreateListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.ProductSerializer
 
 
-class ProductRetriveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class ProductRetriveUpdateDestroyAPIView(
+    generics.RetrieveUpdateDestroyAPIView
+):
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer

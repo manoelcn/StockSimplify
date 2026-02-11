@@ -1,8 +1,12 @@
-from rest_framework import generics
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
-from . import models, forms, serializers
+from django.views.generic import CreateView, DetailView, ListView
+from rest_framework import generics
+
+from . import forms, models, serializers
 
 
 class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -22,7 +26,9 @@ class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return queryset
 
 
-class InflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class InflowCreateView(
+    LoginRequiredMixin, PermissionRequiredMixin, CreateView
+):
     model = models.Inflow
     template_name = 'inflow_create.html'
     form_class = forms.InflowForm
@@ -30,7 +36,9 @@ class InflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'inflows.add_inflow'
 
 
-class InflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class InflowDetailView(
+    LoginRequiredMixin, PermissionRequiredMixin, DetailView
+):
     model = models.Inflow
     template_name = 'inflow_detail.html'
     context_object_name = 'inflow'
