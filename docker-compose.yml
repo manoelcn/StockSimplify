@@ -1,0 +1,29 @@
+services:
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: stockdb
+      POSTGRES_USER: stockuser
+      POSTGRES_PASSWORD: stockpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  stock-app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: stockdb
+      DB_USER: stockuser
+      DB_PASSWORD: stockpassword
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  postgres_data:

@@ -1,6 +1,6 @@
 # StockSimplify 📦
 
-Um sistema de gerenciamento de estoque construído com Django e Django Rest Framework.
+Um sistema de gerenciamento de estoque construído com Django e Django Rest Framework, utilizando Docker e PostgreSQL.
 
 ---
 
@@ -22,6 +22,8 @@ Tecnologias usadas:
 - Django Rest Framework
 - Simple JWT
 - Chart.js
+- PostgreSQL
+- Docker
 
 ---
 
@@ -41,6 +43,8 @@ StockSimplify/
 ├── suppliers/
 ├── .flake8
 ├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
 ├── manage.py
 ├── mkdocs.yml
 ├── pyproject.toml
@@ -52,6 +56,85 @@ StockSimplify/
 ---
 
 ## ▶️ Como rodar o projeto
+
+### 🐋 Executando com Docker (recomendado)
+
+O projeto está configurado para rodar com Docker.
+
+---
+
+### 1. Subir os containers
+
+Na raiz do projeto:
+
+```
+docker-compose up --build
+```
+
+Isso irá:
+- Criar o container do PostgreSQL
+- Criar o container da aplicação Django
+- Executar automaticamente as migrações
+- Subir o servidor em `0.0.0.0:8000`
+
+---
+
+### 🌐 Acessos
+
+Aplicação estará disponível em: `http://127.0.0.1:8000`
+
+---
+
+### 🗄️ Banco de dados
+
+O container do banco está configurado com:
+- **DB_NAME**: stockdb
+- **DB_USER**: stockuser
+- **DB_PASSWORD**: stockpassword
+- **DB_HOST**: db
+- **DB_PORT**: 5432
+
+Os dados são persistidos no volume: `postgres_data`
+Ou seja, mesmo que os containers sejam removidos, os dados continuam salvos.
+
+---
+
+### 👤 Criar Superusuário
+Após subir os containers, caso queira criar um superusuário, execute:
+
+```
+docker exec -it [container_id] task create_user
+```
+
+---
+
+### 📚 Documentação
+Após subir os containers, caso queira subir a documentação, execute:
+
+```
+docker exec -it [container_id] task docs
+```
+
+A documentação estará disponívem em: `http://127.0.0.1:8001`
+
+---
+
+### 🛑 Parar os containers
+```
+docker compose down
+```
+Para remover também os volumes (⚠️ apaga os dados do banco):
+```
+docker compose down -v
+```
+
+---
+
+### 💻 Executando sem Docker (opcional)
+
+Caso queira rodar manualmente:
+
+---
 
 ### 1. Criar e ativar o ambiente virtual
 
